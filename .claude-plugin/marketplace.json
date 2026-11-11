@@ -1,0 +1,20 @@
+{
+  "name": "tutor-skill",
+  "owner": {
+    "name": "igrimzyi"
+  },
+  "metadata": {
+    "description": "A Socratic tutoring skill for Claude."
+  },
+  "plugins": [
+    {
+      "name": "tutor",
+      "source": "./",
+      "description": "Socratic tutor for any subject. Guides you to the answer with questions and escalating hints instead of giving it away. Invoke with /tutor.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "category": "education",
+      "keywords": ["tutor", "education", "socratic", "learning"]
+    }
+  ]
+}

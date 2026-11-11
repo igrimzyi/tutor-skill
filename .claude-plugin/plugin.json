@@ -1,0 +1,12 @@
+{
+  "name": "tutor",
+  "version": "1.0.0",
+  "description": "Socratic tutor for any subject. Guides you to the answer with questions and escalating hints instead of giving it away. Invoke with /tutor.",
+  "author": {
+    "name": "igrimzyi"
+  },
+  "homepage": "https://github.com/igrimzyi/tutor-skill",
+  "repository": "https://github.com/igrimzyi/tutor-skill",
+  "license": "MIT",
+  "keywords": ["tutor", "education", "socratic", "learning", "homework", "study"]
+}

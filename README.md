@@ -13,28 +13,54 @@ Pick the version of Claude you use.
 <details open>
 <summary><b>Claude app (claude.ai, desktop, mobile)</b></summary>
 
-1. Download this repo: click the green **Code** button above, then **Download ZIP**, and unzip it.
-2. Inside, find the **`tutor`** folder. Zip just that folder so you get `tutor.zip`.
-   - **Mac:** right-click the `tutor` folder → **Compress "tutor"**
-   - **Windows:** right-click the `tutor` folder → **Send to** → **Compressed (zipped) folder**
-3. In Claude, go to **Customize → Skills**.
-4. Click **+**, then **+ Create skill**, then **Upload a skill**.
-5. Upload `tutor.zip`.
-6. Make sure the **tutor** skill is toggled on.
+1. Download **`tutor.zip`** from the [latest release](https://github.com/igrimzyi/tutor-skill/releases/latest).
+2. In Claude, go to **Customize → Skills**.
+3. Click **+**, then **+ Create skill**, then **Upload a skill**.
+4. Upload `tutor.zip`.
+5. Make sure the **tutor** skill is toggled on.
 
-> **Note:** Skills need **Code execution and file creation** turned on in your settings. The zip must contain the `tutor` folder itself (with `SKILL.md` inside it), and the folder name must stay `tutor`.
+> **Note:** Skills need **Code execution and file creation** turned on in your settings. If you zip it yourself instead, zip the `skills/tutor` folder so the zip contains the `tutor` folder itself (with `SKILL.md` inside it), and keep the folder name `tutor`.
 
 </details>
 
 <details>
-<summary><b>Claude Code</b></summary>
+<summary><b>Claude Code (plugin)</b></summary>
+
+Add this repo as a plugin marketplace, then install the plugin:
+
+```
+/plugin marketplace add igrimzyi/tutor-skill
+/plugin install tutor@tutor-skill
+```
+
+On Claude Code 2.1.275 or later you can do it in one step:
+
+```
+/plugin install tutor --marketplace igrimzyi/tutor-skill
+```
+
+Run `/skills` to confirm `tutor` is listed.
+
+</details>
+
+<details>
+<summary><b>Other agents (skills CLI)</b></summary>
+
+```bash
+npx skills add igrimzyi/tutor-skill
+```
+
+</details>
+
+<details>
+<summary><b>Manual copy (Claude Code)</b></summary>
 
 Clone the repo and copy the skill into your personal skills folder:
 
 ```bash
 git clone https://github.com/igrimzyi/tutor-skill.git
 mkdir -p ~/.claude/skills
-cp -r tutor-skill/tutor ~/.claude/skills/
+cp -r tutor-skill/skills/tutor ~/.claude/skills/
 ```
 
 Restart Claude Code. Run `/skills` to confirm `tutor` is listed.
@@ -142,11 +168,15 @@ Works for any subject, including math, science, history, writing, reading, langu
 tutor-skill/
 ├── README.md
 ├── LICENSE
-└── tutor/                           # The skill folder (this is what you install)
-    ├── SKILL.md                     # Main tutoring instructions and flags
-    └── references/
-        ├── word-problems.md         # Detailed word-problem approach
-        └── subject-adaptations.md   # How the method adapts per subject
+├── .claude-plugin/
+│   ├── plugin.json                  # Plugin manifest (name, version)
+│   └── marketplace.json             # Lets /plugin marketplace add find it
+└── skills/
+    └── tutor/                       # The skill folder (this is what you install)
+        ├── SKILL.md                 # Main tutoring instructions and flags
+        └── references/
+            ├── word-problems.md     # Detailed word-problem approach
+            └── subject-adaptations.md # How the method adapts per subject
 ```
 
 ---
@@ -155,7 +185,7 @@ tutor-skill/
 
 **`/tutor` doesn't seem to do anything.** Check that the skill is toggled on in **Customize → Skills**, and start a new chat.
 
-**Upload failed.** Make sure you zipped the `tutor` folder, not the whole repo, and that the folder is still named `tutor` with `SKILL.md` inside.
+**Upload failed.** Use the `tutor.zip` from the latest release. If you zipped it yourself, make sure you zipped the `skills/tutor` folder, not the whole repo, and that the folder is still named `tutor` with `SKILL.md` inside.
 
 **It gave me the answer without me asking.** Tell it "don't give me the answer, guide me," and consider opening an issue on this repo with the example.
 
@@ -163,7 +193,9 @@ tutor-skill/
 
 ## Updating
 
-When this repo changes, download it again, re-zip the `tutor` folder, and upload it in **Customize → Skills** (delete the old version first). In Claude Code, copy the folder into `~/.claude/skills/` again.
+- **Claude Code plugin:** run `/plugin marketplace update tutor-skill`, then reinstall or restart.
+- **Claude app:** download the new `tutor.zip` from the latest release and upload it in **Customize → Skills** (delete the old version first).
+- **Manual copy:** copy `skills/tutor` into `~/.claude/skills/` again.
 
 ---
 
